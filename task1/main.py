@@ -12,7 +12,7 @@ app = FastAPI()
 async def home() -> dict:
     """
     Асинхронная функция генерирует случайное число от 1 до 5
-    затем засыпает n секунд и возвращает словарь Hello, World!
+    затем засыпает n секунд и возвращает словарь
     """
     delay = random.randint(1, 5)
     await asyncio.sleep(delay)
