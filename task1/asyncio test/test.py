@@ -13,8 +13,8 @@ async def get_api_status(session, url):
 @timer.atimer
 async def main(url: str, n: int) -> None:
     """ Создаем сессию и отправляем n запросов в url """
-    async with aiohttp.ClientSession() as session:
+    async with aiohttp.ClientSession(connector=aiohttp.TCPConnector(limit=500)) as session:
         tasks = [get_api_status(session, url) for _ in range(n)]
         await asyncio.gather(*tasks)
 
-asyncio.run(main("http://localhost:8000/", 100))
+asyncio.run(main("http://localhost:8000/", 500))
